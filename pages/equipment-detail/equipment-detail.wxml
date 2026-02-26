@@ -1,0 +1,98 @@
+<!--pages/equipment-detail/equipment-detail.wxml-->
+<view class="page-detail">
+  <!-- 设备图片 -->
+  <view class="image-section">
+    <swiper class="image-swiper" indicator-dots autoplay circular>
+      <swiper-item wx:for="{{images}}" wx:key="id">
+        <image class="eq-cover" src="{{item.imageUrl}}" mode="aspectFill"></image>
+      </swiper-item>
+      <swiper-item wx:if="{{images.length === 0}}">
+        <view class="eq-cover-placeholder">
+          <image src="/images/icons/image-gray.png" class="placeholder-icon" mode="aspectFit"></image>
+          <text>暂无图片</text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 基本信息卡片 -->
+  <view class="info-card card">
+    <view class="info-header">
+      <view class="info-title-row">
+        <text class="eq-title">{{detail.name}}</text>
+        <text class="status-tag {{detail.statusClass}}">{{detail.statusLabel}}</text>
+      </view>
+      <text class="eq-no font-mono">{{detail.equipmentNo}}</text>
+    </view>
+
+    <view class="info-grid">
+      <view class="info-item">
+        <text class="info-label">品牌</text>
+        <text class="info-value">{{detail.brand || '-'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">型号</text>
+        <text class="info-value">{{detail.model || '-'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">分类</text>
+        <text class="info-value">{{detail.categoryName || '-'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">位置</text>
+        <text class="info-value">{{detail.location || '-'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">购入日期</text>
+        <text class="info-value">{{detail.purchaseDate || '-'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">保修截止</text>
+        <text class="info-value">{{detail.warrantyEndDate || '-'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">负责人</text>
+        <text class="info-value">{{detail.responsibleName || '-'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">供应商</text>
+        <text class="info-value">{{detail.supplier || '-'}}</text>
+      </view>
+    </view>
+
+    <view class="info-desc" wx:if="{{detail.description}}">
+      <text class="info-label">设备描述</text>
+      <text class="desc-text">{{detail.description}}</text>
+    </view>
+  </view>
+
+  <!-- 维修历史 -->
+  <view class="section-card card" wx:if="{{repairHistory.length > 0}}">
+    <view class="section-card-title">
+      <text>维修历史</text>
+      <text class="history-count">共 {{repairHistory.length}} 条</text>
+    </view>
+    <view class="history-item" wx:for="{{repairHistory}}" wx:key="id">
+      <view class="history-dot"></view>
+      <view class="history-content">
+        <text class="history-title">{{item.faultDesc}}</text>
+        <text class="history-time">{{item.reportTime}} · {{item.statusLabel}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bottom-btn follow-btn {{isFollowed ? 'followed' : ''}}" bindtap="toggleFollow">
+      <image src="/images/icons/heart-{{isFollowed ? 'red' : 'gray'}}.png" class="icon-sm" mode="aspectFit"></image>
+      <text>{{isFollowed ? '已关注' : '关注'}}</text>
+    </view>
+    <view class="bottom-btn repair-btn" bindtap="goCreateRepair">
+      <image src="/images/icons/wrench-white.png" class="icon-sm" mode="aspectFit"></image>
+      <text>报修</text>
+    </view>
+    <view class="bottom-btn edit-btn" wx:if="{{canEdit}}" bindtap="goEdit">
+      <text>编辑</text>
+    </view>
+  </view>
+</view>

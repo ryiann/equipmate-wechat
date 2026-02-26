@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/equipment/equipment",
+    "pages/repair/repair",
+    "pages/profile/profile",
+    "pages/login/login",
+    "pages/equipment-detail/equipment-detail",
+    "pages/equipment-form/equipment-form",
+    "pages/repair-detail/repair-detail",
+    "pages/repair-create/repair-create",
+    "pages/message/message",
+    "pages/profile-edit/profile-edit"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "EquipMate",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f5f5",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#9ca3af",
+    "selectedColor": "#2563EB",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/equipment/equipment",
+        "text": "设备",
+        "iconPath": "images/tabbar/equipment.png",
+        "selectedIconPath": "images/tabbar/equipment-active.png"
+      },
+      {
+        "pagePath": "pages/repair/repair",
+        "text": "维修",
+        "iconPath": "images/tabbar/repair.png",
+        "selectedIconPath": "images/tabbar/repair-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tabbar/profile.png",
+        "selectedIconPath": "images/tabbar/profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "style": "v2"
+}

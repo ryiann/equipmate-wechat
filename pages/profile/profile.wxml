@@ -1,0 +1,83 @@
+<!--pages/profile/profile.wxml-->
+<view class="page-profile">
+  <!-- 头部用户信息 -->
+  <view class="profile-header">
+    <view class="profile-info">
+      <view class="avatar-wrap">
+        <image 
+          wx:if="{{isLoggedIn && avatarUrl}}" 
+          class="avatar" 
+          src="{{avatarUrl}}" 
+          mode="aspectFill"
+        ></image>
+        <view wx:else class="avatar avatar-default">
+          <image src="/images/icons/user-gray.png" class="avatar-icon" mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="profile-text">
+        <block wx:if="{{isLoggedIn}}">
+          <text class="profile-name">{{userName}}</text>
+          <view class="profile-meta">
+            <text class="profile-phone">{{maskedPhone}}</text>
+            <text class="role-tag">{{roleLabel}}</text>
+          </view>
+        </block>
+        <view wx:else class="login-prompt" bindtap="goLogin">
+          <text class="profile-name">点击登录/注册</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats-row">
+    <view class="stat-item {{index < 2 ? 'stat-border' : ''}}" wx:for="{{stats}}" wx:key="label" wx:for-index="index">
+      <text class="stat-value">{{isLoggedIn ? item.value : '-'}}</text>
+      <text class="stat-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 菜单组 1 -->
+  <view class="menu-group">
+    <view class="menu-item" bindtap="onMenuTap" data-action="follow">
+      <view class="menu-icon-wrap">
+        <image src="/images/icons/heart-red.png" class="menu-icon" mode="aspectFit"></image>
+      </view>
+      <text class="menu-label">我的关注</text>
+      <image src="/images/icons/chevron-right-gray.png" class="menu-arrow" mode="aspectFit"></image>
+    </view>
+    <view class="menu-item" bindtap="onMenuTap" data-action="myRepair">
+      <view class="menu-icon-wrap">
+        <image src="/images/icons/file-blue.png" class="menu-icon" mode="aspectFit"></image>
+      </view>
+      <text class="menu-label">我的报修</text>
+      <image src="/images/icons/chevron-right-gray.png" class="menu-arrow" mode="aspectFit"></image>
+    </view>
+    <view class="menu-item" wx:if="{{role === 'TECHNICIAN'}}" bindtap="onMenuTap" data-action="myMaintenance">
+      <view class="menu-icon-wrap">
+        <image src="/images/icons/wrench-orange.png" class="menu-icon" mode="aspectFit"></image>
+      </view>
+      <text class="menu-label">我的维修</text>
+      <image src="/images/icons/chevron-right-gray.png" class="menu-arrow" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 菜单组 2 -->
+  <view class="menu-group">
+    <view class="menu-item" bindtap="onMenuTap" data-action="settings">
+      <view class="menu-icon-wrap">
+        <image src="/images/icons/settings-gray.png" class="menu-icon" mode="aspectFit"></image>
+      </view>
+      <text class="menu-label">系统设置</text>
+      <image src="/images/icons/chevron-right-gray.png" class="menu-arrow" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-wrap" wx:if="{{isLoggedIn}}">
+    <view class="logout-btn" bindtap="onLogout">
+      <image src="/images/icons/log-out-red.png" class="icon-md" mode="aspectFit"></image>
+      <text>退出登录</text>
+    </view>
+  </view>
+</view>

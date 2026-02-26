@@ -1,0 +1,59 @@
+/* pages/equipment-detail/equipment-detail.wxss */
+
+.page-detail {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: 160rpx;
+}
+
+.image-section { background: #f3f4f6; }
+.image-swiper { height: 480rpx; width: 100%; }
+.eq-cover { width: 100%; height: 100%; }
+.eq-cover-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: #f3f4f6; color: var(--color-text-placeholder);
+  font-size: 24rpx;
+}
+.placeholder-icon { width: 80rpx; height: 80rpx; margin-bottom: 12rpx; }
+
+.info-card { margin: 24rpx 24rpx 0; padding: 28rpx; }
+.info-header { margin-bottom: 24rpx; border-bottom: 1rpx solid var(--color-border); padding-bottom: 20rpx; }
+.info-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8rpx; }
+.eq-title { font-size: 34rpx; font-weight: 700; color: var(--color-text-primary); flex: 1; }
+.eq-no { font-size: 24rpx; color: var(--color-text-secondary); }
+
+.info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20rpx; }
+.info-item { display: flex; flex-direction: column; gap: 6rpx; }
+.info-label { font-size: 22rpx; color: var(--color-text-placeholder); }
+.info-value { font-size: 26rpx; color: var(--color-text-primary); }
+
+.info-desc { margin-top: 24rpx; padding-top: 20rpx; border-top: 1rpx solid var(--color-border); }
+.desc-text { font-size: 26rpx; color: var(--color-text-secondary); line-height: 1.6; margin-top: 8rpx; display: block; }
+
+.section-card { margin: 24rpx 24rpx 0; padding: 28rpx; }
+.section-card-title { display: flex; justify-content: space-between; align-items: center; font-size: 30rpx; font-weight: 700; margin-bottom: 24rpx; }
+.history-count { font-size: 22rpx; color: var(--color-text-placeholder); font-weight: 400; }
+
+.history-item { display: flex; gap: 16rpx; padding: 16rpx 0; border-bottom: 1rpx solid var(--color-border-light); }
+.history-item:last-child { border-bottom: none; }
+.history-dot { width: 16rpx; height: 16rpx; border-radius: 50%; background: var(--color-primary); margin-top: 8rpx; flex-shrink: 0; }
+.history-content { flex: 1; }
+.history-title { font-size: 26rpx; color: var(--color-text-primary); display: block; }
+.history-time { font-size: 22rpx; color: var(--color-text-placeholder); margin-top: 6rpx; display: block; }
+
+.bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; gap: 16rpx; padding: 20rpx 32rpx;
+  background: #ffffff; border-top: 1rpx solid var(--color-border);
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+}
+.bottom-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8rpx;
+  padding: 20rpx 0; border-radius: var(--radius-lg); font-size: 26rpx; font-weight: 500;
+}
+.follow-btn { flex: 1; background: #f3f4f6; color: var(--color-text-secondary); }
+.follow-btn.followed { background: var(--color-danger-50); color: var(--color-danger); }
+.repair-btn { flex: 2; background: var(--color-primary); color: #ffffff; }
+.edit-btn { flex: 1; background: var(--color-warning-50); color: var(--color-warning); }

@@ -1,0 +1,72 @@
+<!--pages/repair/repair.wxml-->
+<view class="page-repair">
+  <!-- 标题 + Tab -->
+  <view class="repair-header">
+    <view class="repair-tabs">
+      <view 
+        class="tab-item {{activeTab === item.id ? 'active' : ''}}" 
+        wx:for="{{tabs}}" 
+        wx:key="id"
+        bindtap="onTabTap"
+        data-tab="{{item.id}}"
+      >
+        <text class="tab-label">{{item.label}}</text>
+        <text class="tab-count" wx:if="{{isLoggedIn && item.count > 0}}">{{item.count}}</text>
+        <view class="tab-indicator" wx:if="{{activeTab === item.id}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 工单列表 -->
+  <view class="repair-list" wx:if="{{filteredList.length > 0}}">
+    <view 
+      class="repair-card card" 
+      wx:for="{{filteredList}}" 
+      wx:key="id"
+      bindtap="goDetail"
+      data-id="{{item.id}}"
+    >
+      <!-- 卡片头部 -->
+      <view class="repair-card-header">
+        <text class="order-no font-mono">{{item.orderNo}}</text>
+        <view class="order-time">
+          <image src="/images/icons/clock-gray.png" class="icon-xs" mode="aspectFit"></image>
+          <text>{{item.reportTime}}</text>
+        </view>
+      </view>
+
+      <!-- 卡片内容 -->
+      <view class="repair-card-body">
+        <view class="repair-card-title-row">
+          <text class="repair-eq-name">{{item.equipmentName}}</text>
+          <text class="tag {{item.levelClass}}">{{item.levelLabel}}</text>
+        </view>
+        <text class="repair-desc line-clamp-2">{{item.desc}}</text>
+
+        <view class="repair-card-footer">
+          <text class="repair-person">{{item.personInfo}}</text>
+          <view wx:if="{{item.showAccept}}" class="btn-primary" catchtap="onAcceptOrder" data-item="{{item}}">
+            <text>接单处理</text>
+          </view>
+          <view wx:elif="{{item.showComplete}}" class="btn-success" catchtap="onCompleteOrder" data-item="{{item}}">
+            <image src="/images/icons/check-circle-white.png" class="icon-xs" mode="aspectFit" style="margin-right:6rpx;"></image>
+            <text>完成维修</text>
+          </view>
+          <view wx:else class="btn-outline" catchtap="onUrge" data-item="{{item}}">
+            <text>催办</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <text>暂无维修工单</text>
+  </view>
+
+  <!-- 新增报修按钮 -->
+  <view class="fab" bindtap="goCreateRepair">
+    <image src="/images/icons/plus-white.png" class="fab-icon" mode="aspectFit"></image>
+  </view>
+</view>

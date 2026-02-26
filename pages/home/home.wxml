@@ -1,0 +1,74 @@
+<!--pages/home/home.wxml-->
+<view class="page-home">
+  <!-- 蓝色弧形头部 -->
+  <view class="header">
+    <view class="header-top">
+      <view class="header-info">
+        <text class="header-title">{{headerTitle}}</text>
+        <text class="header-subtitle">{{headerSubtitle}}</text>
+      </view>
+      <view class="header-bell" bindtap="goMessage">
+        <image src="/images/icons/bell-white.png" class="icon-bell" mode="aspectFit"></image>
+        <view wx:if="{{unreadCount > 0}}" class="badge">{{unreadCount}}</view>
+      </view>
+    </view>
+
+    <!-- 统计卡片 -->
+    <view class="stats-grid">
+      <view class="stat-card" wx:for="{{stats}}" wx:key="label">
+        <text class="stat-label">{{item.label}}</text>
+        <text class="stat-value">{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作（浮起卡片） -->
+  <view class="quick-actions-wrapper">
+    <view class="quick-actions card">
+      <view class="action-item" wx:for="{{actions}}" wx:key="label" bindtap="onActionTap" data-action="{{item.action}}">
+        <view class="action-icon {{item.bgClass}}">
+          <image src="{{item.icon}}" class="icon-md" mode="aspectFit"></image>
+        </view>
+        <text class="action-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 待办工单 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">{{taskTitle}}</text>
+      <view class="section-more" bindtap="goRepairList">
+        <text>全部</text>
+        <image src="/images/icons/chevron-right-gray.png" class="icon-sm" mode="aspectFit"></image>
+      </view>
+    </view>
+
+    <view class="task-list" wx:if="{{tasks.length > 0}}">
+      <view class="task-card card" wx:for="{{tasks}}" wx:key="id" bindtap="goRepairDetail" data-id="{{item.id}}">
+        <view class="task-card-top">
+          <view class="task-card-left">
+            <text class="tag {{item.statusTagClass}}">{{item.statusText}}</text>
+            <text class="task-title">{{item.title}}</text>
+          </view>
+          <view class="task-time">
+            <image src="/images/icons/clock-gray.png" class="icon-xs" mode="aspectFit"></image>
+            <text>{{item.time}}</text>
+          </view>
+        </view>
+        <text class="task-desc line-clamp-2">{{item.desc}}</text>
+        <view class="task-card-bottom">
+          <text class="task-user">{{item.user}}</text>
+          <view class="{{item.actionClass}}" bindtap="onTaskAction" data-task="{{item}}" catchtap="onTaskAction">
+            <text>{{item.action}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-card card" wx:else>
+      <text>{{isLoggedIn ? '暂无数据' : '请登录后查看工作台'}}</text>
+    </view>
+  </view>
+</view>

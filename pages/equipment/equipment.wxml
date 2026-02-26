@@ -1,0 +1,81 @@
+<!--pages/equipment/equipment.wxml-->
+<view class="page-equipment">
+  <!-- 自定义标题栏 -->
+  <view class="custom-nav">
+    <view class="nav-placeholder"></view>
+    <text class="nav-title">设备台账</text>
+    <view class="nav-right">
+      <view class="add-btn" wx:if="{{isLoggedIn}}" bindtap="goAddEquipment">
+        <image src="/images/icons/plus-white.png" class="add-icon" mode="aspectFit"></image>
+      </view>
+      <view class="nav-placeholder" wx:else></view>
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <image src="/images/icons/search-gray.png" class="search-icon" mode="aspectFit"></image>
+      <input 
+        class="search-input" 
+        placeholder="搜索设备名称、编号" 
+        placeholder-class="search-placeholder"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearch"
+        confirm-type="search"
+      />
+    </view>
+    <view class="filter-btn" bindtap="onFilterTap">
+      <image src="/images/icons/filter-gray.png" class="filter-icon" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 分类选择 -->
+  <scroll-view class="category-scroll" scroll-x enable-flex>
+    <view class="category-list">
+      <view 
+        class="category-item {{activeCategory === item ? 'active' : ''}}" 
+        wx:for="{{categories}}" 
+        wx:key="*this"
+        bindtap="onCategoryTap"
+        data-cat="{{item}}"
+      >
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 设备列表 -->
+  <view class="equipment-list" wx:if="{{list.length > 0}}">
+    <view 
+      class="equipment-card card" 
+      wx:for="{{list}}" 
+      wx:key="id"
+      bindtap="goDetail"
+      data-id="{{item.id}}"
+    >
+      <image 
+        class="eq-image" 
+        src="{{item.imageUrl || '/images/icons/image-gray.png'}}" 
+        mode="aspectFill"
+      ></image>
+      <view class="eq-info">
+        <view class="eq-info-top">
+          <text class="eq-name truncate">{{item.name}}</text>
+          <text class="status-tag {{item.statusClass}}">{{item.statusLabel}}</text>
+        </view>
+        <text class="eq-no font-mono">{{item.equipmentNo}}</text>
+        <view class="eq-location">
+          <image src="/images/icons/map-pin-gray.png" class="icon-xs" mode="aspectFit"></image>
+          <text class="truncate">{{item.location || '未设置'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <text>暂无设备数据</text>
+  </view>
+</view>

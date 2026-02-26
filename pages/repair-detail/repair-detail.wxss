@@ -1,0 +1,43 @@
+/* pages/repair-detail/repair-detail.wxss */
+.page-detail { min-height: 100vh; background: var(--color-bg); padding-bottom: 160rpx; }
+
+.status-header { padding: 48rpx 32rpx; color: #fff; }
+.status-header.pending { background: var(--color-warning); }
+.status-header.progress { background: var(--color-primary); }
+.status-header.completed { background: var(--color-success); }
+.status-header.closed { background: #6b7280; }
+.status-text { font-size: 36rpx; font-weight: 700; display: block; }
+.status-desc { font-size: 24rpx; opacity: 0.8; margin-top: 8rpx; display: block; }
+
+.info-card { margin: 24rpx 24rpx 0; padding: 28rpx; }
+.card-title { font-size: 30rpx; font-weight: 700; color: var(--color-text-primary); margin-bottom: 20rpx; }
+.info-row { display: flex; justify-content: space-between; align-items: center; padding: 12rpx 0; border-bottom: 1rpx solid var(--color-border-light); }
+.info-row:last-child { border-bottom: none; }
+.info-label { font-size: 26rpx; color: var(--color-text-secondary); }
+.info-value { font-size: 26rpx; color: var(--color-text-primary); }
+.desc-text { font-size: 26rpx; color: var(--color-text-secondary); line-height: 1.6; }
+
+/* 时间线 */
+.timeline { padding-left: 8rpx; }
+.timeline-item { display: flex; gap: 20rpx; position: relative; padding-bottom: 32rpx; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot { width: 20rpx; height: 20rpx; border-radius: 50%; background: #d1d5db; margin-top: 6rpx; flex-shrink: 0; z-index: 1; }
+.timeline-item.done .timeline-dot { background: var(--color-primary); }
+.timeline-line { position: absolute; left: 9rpx; top: 30rpx; width: 2rpx; height: calc(100% - 20rpx); background: #e5e7eb; }
+.timeline-content { flex: 1; }
+.timeline-label { font-size: 26rpx; color: var(--color-text-primary); display: block; }
+.timeline-time { font-size: 22rpx; color: var(--color-text-placeholder); margin-top: 4rpx; display: block; }
+
+/* 维修记录 */
+.record-item { padding: 20rpx 0; border-bottom: 1rpx solid var(--color-border-light); }
+.record-item:last-child { border-bottom: none; }
+.record-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; }
+.record-time { font-size: 22rpx; color: var(--color-text-placeholder); }
+.record-desc { font-size: 26rpx; color: var(--color-text-secondary); line-height: 1.5; display: block; }
+.record-operator { font-size: 22rpx; color: var(--color-text-placeholder); margin-top: 8rpx; display: block; }
+
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; padding: 24rpx 32rpx; background: #fff; border-top: 1rpx solid var(--color-border); padding-bottom: calc(24rpx + env(safe-area-inset-bottom)); }
+.submit-btn { display: flex; width: 100%; justify-content: center; padding: 24rpx 0; color: #fff; font-size: 30rpx; font-weight: 600; border-radius: 20rpx; }
+.submit-btn.btn-blue { background: var(--color-primary); }
+.submit-btn.btn-green { background: var(--color-success); }
+.submit-btn.btn-gray { background: #6b7280; }

@@ -1,0 +1,88 @@
+<!--pages/repair-detail/repair-detail.wxml-->
+<view class="page-detail">
+  <!-- 状态头部 -->
+  <view class="status-header {{statusHeaderClass}}">
+    <text class="status-text">{{detail.statusLabel}}</text>
+    <text class="status-desc">{{statusDesc}}</text>
+  </view>
+
+  <!-- 设备信息 -->
+  <view class="info-card card">
+    <view class="card-title">设备信息</view>
+    <view class="info-row">
+      <text class="info-label">设备名称</text>
+      <text class="info-value">{{detail.equipmentName}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">工单编号</text>
+      <text class="info-value font-mono">{{detail.orderNo}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">故障等级</text>
+      <text class="tag {{detail.levelClass}}">{{detail.levelLabel}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">报修人</text>
+      <text class="info-value">{{detail.reporterName || '-'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">报修时间</text>
+      <text class="info-value">{{detail.reportTime}}</text>
+    </view>
+    <view class="info-row" wx:if="{{detail.assigneeName}}">
+      <text class="info-label">维修人</text>
+      <text class="info-value">{{detail.assigneeName}}</text>
+    </view>
+  </view>
+
+  <!-- 故障描述 -->
+  <view class="info-card card">
+    <view class="card-title">故障描述</view>
+    <text class="desc-text">{{detail.faultDesc}}</text>
+  </view>
+
+  <!-- 状态时间线 -->
+  <view class="info-card card">
+    <view class="card-title">工单进度</view>
+    <view class="timeline">
+      <view class="timeline-item {{item.done ? 'done' : ''}}" wx:for="{{timeline}}" wx:key="label">
+        <view class="timeline-dot"></view>
+        <view class="timeline-line" wx:if="{{index < timeline.length - 1}}"></view>
+        <view class="timeline-content">
+          <text class="timeline-label">{{item.label}}</text>
+          <text class="timeline-time">{{item.time || '待操作'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 维修记录 -->
+  <view class="info-card card" wx:if="{{records.length > 0}}">
+    <view class="card-title">维修记录</view>
+    <view class="record-item" wx:for="{{records}}" wx:key="id">
+      <view class="record-header">
+        <text class="record-type tag tag-blue">{{item.actionTypeLabel}}</text>
+        <text class="record-time">{{item.actionTime}}</text>
+      </view>
+      <text class="record-desc">{{item.actionDesc}}</text>
+      <text class="record-operator" wx:if="{{item.operatorName}}">操作人：{{item.operatorName}}</text>
+    </view>
+  </view>
+
+  <!-- 维修结论 -->
+  <view class="info-card card" wx:if="{{detail.repairResult}}">
+    <view class="card-title">维修结论</view>
+    <text class="desc-text">{{detail.repairResult}}</text>
+    <view class="info-row" wx:if="{{detail.repairCost}}">
+      <text class="info-label">维修费用</text>
+      <text class="info-value">¥{{detail.repairCost}}</text>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-bar" wx:if="{{showAction}}">
+    <view class="submit-btn {{actionBtnClass}}" bindtap="onAction">
+      <text>{{actionText}}</text>
+    </view>
+  </view>
+</view>

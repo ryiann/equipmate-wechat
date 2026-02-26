@@ -1,0 +1,99 @@
+<!--pages/login/login.wxml-->
+<view class="page-login">
+  <!-- 关闭按钮 -->
+  <view class="close-btn" bindtap="onClose">
+    <image src="/images/icons/x-gray.png" class="close-icon" mode="aspectFit"></image>
+  </view>
+
+  <!-- Logo -->
+  <view class="logo-section">
+    <view class="logo-box">
+      <text class="logo-text">EM</text>
+    </view>
+    <text class="app-title">EquipMate</text>
+    <text class="app-subtitle">企业设备全生命周期管理平台</text>
+  </view>
+
+  <!-- 表单卡片 -->
+  <view class="form-card card">
+    <!-- 身份选择 -->
+    <view class="role-section">
+      <text class="role-label">选择体验身份 (演示用)</text>
+      <view class="role-selector">
+        <view 
+          class="role-option {{selectedRole === 'USER' ? 'active' : ''}}" 
+          bindtap="selectRole" 
+          data-role="USER"
+        >
+          <image src="/images/icons/user-{{selectedRole === 'USER' ? 'blue' : 'gray'}}.png" class="role-icon" mode="aspectFit"></image>
+          <text>普通员工</text>
+        </view>
+        <view 
+          class="role-option {{selectedRole === 'TECHNICIAN' ? 'active' : ''}}" 
+          bindtap="selectRole" 
+          data-role="TECHNICIAN"
+        >
+          <image src="/images/icons/wrench-{{selectedRole === 'TECHNICIAN' ? 'blue' : 'gray'}}.png" class="role-icon" mode="aspectFit"></image>
+          <text>维修人员</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 手机号 -->
+    <view class="form-group">
+      <text class="form-label">手机号</text>
+      <view class="input-wrap">
+        <image src="/images/icons/smartphone-gray.png" class="input-icon" mode="aspectFit"></image>
+        <input 
+          class="form-input" 
+          type="number" 
+          placeholder="请输入手机号" 
+          placeholder-class="input-placeholder"
+          maxlength="11"
+          value="{{phone}}"
+          bindinput="onPhoneInput"
+        />
+      </view>
+    </view>
+
+    <!-- 验证码 -->
+    <view class="form-group">
+      <text class="form-label">验证码</text>
+      <view class="code-row">
+        <view class="input-wrap flex-1">
+          <image src="/images/icons/shield-check-gray.png" class="input-icon" mode="aspectFit"></image>
+          <input 
+            class="form-input" 
+            type="number" 
+            placeholder="请输入验证码" 
+            placeholder-class="input-placeholder"
+            maxlength="6"
+            value="{{code}}"
+            bindinput="onCodeInput"
+          />
+        </view>
+        <view class="code-btn {{codeBtnDisabled ? 'disabled' : ''}}" bindtap="sendCode">
+          <text>{{codeBtnText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <view class="login-btn" bindtap="onLogin">
+      <text>登录</text>
+    </view>
+
+    <!-- 分割线 -->
+    <view class="divider">
+      <view class="divider-line"></view>
+      <text class="divider-text">其他登录方式</text>
+      <view class="divider-line"></view>
+    </view>
+
+    <!-- 微信登录 -->
+    <button class="wechat-btn" bindtap="onWechatLogin" open-type="getUserInfo">
+      <image src="/images/icons/message-circle-white.png" class="wechat-icon" mode="aspectFit"></image>
+      <text>微信授权登录</text>
+    </button>
+  </view>
+</view>

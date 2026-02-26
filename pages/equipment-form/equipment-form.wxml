@@ -1,0 +1,105 @@
+<!--pages/equipment-form/equipment-form.wxml-->
+<view class="page-form">
+
+  <!-- 设备图片 -->
+  <view class="section-card">
+    <text class="section-title">设备图片</text>
+    <view class="image-upload-grid">
+      <view class="upload-item" wx:for="{{imageList}}" wx:key="*this">
+        <image class="upload-preview" src="{{item}}" mode="aspectFill"></image>
+        <view class="upload-delete" catchtap="deleteImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="upload-add" bindtap="chooseImage" wx:if="{{imageList.length < 9}}">
+        <image src="/images/icons/camera-gray.png" class="upload-add-icon" mode="aspectFit"></image>
+        <text>拍照/相册</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 基础信息 -->
+  <view class="section-card">
+    <text class="section-title">基础信息</text>
+
+    <view class="form-item">
+      <text class="form-label required">设备名称</text>
+      <input class="form-input" placeholder="请输入设备名称" value="{{form.name}}" bindinput="onInput" data-field="name" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label required">设备编号</text>
+      <input class="form-input" placeholder="请输入设备编号 (如: EQ-2024-001)" value="{{form.equipmentNo}}" bindinput="onInput" data-field="equipmentNo" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label required">设备分类</text>
+      <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+        <view class="form-picker">
+          <text class="{{form.categoryName ? '' : 'placeholder'}}">{{form.categoryName || '请选择分类'}}</text>
+          <image src="/images/icons/chevron-right-gray.png" class="picker-arrow" mode="aspectFit"></image>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">设备状态</text>
+      <picker mode="selector" range="{{statusOptions}}" value="{{statusIndex}}" bindchange="onStatusChange">
+        <view class="form-picker">
+          <text>{{statusOptions[statusIndex]}}</text>
+          <image src="/images/icons/chevron-right-gray.png" class="picker-arrow" mode="aspectFit"></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 详细信息 -->
+  <view class="section-card">
+    <text class="section-title">详细信息</text>
+
+    <view class="form-item">
+      <text class="form-label">品牌</text>
+      <input class="form-input" placeholder="请输入品牌" value="{{form.brand}}" bindinput="onInput" data-field="brand" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">型号/规格</text>
+      <input class="form-input" placeholder="请输入型号或规格" value="{{form.model}}" bindinput="onInput" data-field="model" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">存放位置</text>
+      <input class="form-input" placeholder="请输入存放位置 (如: 一号车间 A区)" value="{{form.location}}" bindinput="onInput" data-field="location" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">购入日期</text>
+      <picker mode="date" value="{{form.purchaseDate}}" bindchange="onDateChange" data-field="purchaseDate">
+        <view class="form-picker">
+          <text class="{{form.purchaseDate ? '' : 'placeholder'}}">{{form.purchaseDate || '请选择日期'}}</text>
+          <image src="/images/icons/chevron-right-gray.png" class="picker-arrow" mode="aspectFit"></image>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">购入价格 (元)</text>
+      <input class="form-input" type="digit" placeholder="请输入价格" value="{{form.purchasePrice}}" bindinput="onInput" data-field="purchasePrice" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">供应商</text>
+      <input class="form-input" placeholder="请输入供应商" value="{{form.supplier}}" bindinput="onInput" data-field="supplier" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">设备描述</text>
+      <textarea class="form-textarea" placeholder="请输入设备描述" value="{{form.description}}" bindinput="onInput" data-field="description" maxlength="500" auto-height></textarea>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-wrap">
+    <view class="submit-btn" bindtap="onSubmit">
+      <text>{{isEdit ? '保存修改' : '保存设备'}}</text>
+    </view>
+  </view>
+</view>

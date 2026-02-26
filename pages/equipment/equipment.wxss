@@ -1,0 +1,206 @@
+/* pages/equipment/equipment.wxss */
+
+.page-equipment {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: 40rpx;
+}
+
+/* 自定义导航栏 */
+.custom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32rpx;
+  padding-top: calc(44px + env(safe-area-inset-top, 20px));
+  height: calc(88rpx + 44px + env(safe-area-inset-top, 20px));
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.nav-placeholder {
+  width: 64rpx;
+}
+
+.nav-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.nav-right {
+  width: 64rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-btn {
+  width: 60rpx;
+  height: 60rpx;
+  background: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(37, 99, 235, 0.3);
+}
+
+.add-btn:active {
+  opacity: 0.8;
+}
+
+.add-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  gap: 20rpx;
+  padding: 24rpx 32rpx;
+  background: #ffffff;
+}
+
+.search-input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 24rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.search-input {
+  width: 100%;
+  background: #f3f4f6;
+  border-radius: 20rpx;
+  padding: 22rpx 24rpx 22rpx 76rpx;
+  font-size: 28rpx;
+  height: 88rpx;
+}
+
+.search-placeholder {
+  color: var(--color-text-placeholder);
+}
+
+.filter-btn {
+  width: 88rpx;
+  height: 88rpx;
+  background: #f3f4f6;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.filter-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+/* 分类 */
+.category-scroll {
+  background: #ffffff;
+  padding: 20rpx 32rpx;
+  border-bottom: 1rpx solid var(--color-border);
+  white-space: nowrap;
+}
+
+.category-list {
+  display: flex;
+  gap: 16rpx;
+}
+
+.category-item {
+  display: inline-flex;
+  white-space: nowrap;
+  padding: 12rpx 28rpx;
+  border-radius: var(--radius-full);
+  font-size: 24rpx;
+  font-weight: 500;
+  background: #f3f4f6;
+  color: var(--color-text-secondary);
+  transition: all 0.2s;
+}
+
+.category-item.active {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* 设备列表 */
+.equipment-list {
+  padding: 24rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.equipment-card {
+  display: flex;
+  gap: 24rpx;
+  padding: 20rpx;
+}
+
+.eq-image {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 20rpx;
+  background: #f3f4f6;
+  flex-shrink: 0;
+}
+
+.eq-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8rpx 0;
+}
+
+.eq-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8rpx;
+}
+
+.eq-name {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  flex: 1;
+  padding-right: 12rpx;
+}
+
+.eq-no {
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 12rpx;
+}
+
+.eq-location {
+  display: flex;
+  align-items: center;
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  margin-top: auto;
+}
+
+.eq-location .icon-xs {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 6rpx;
+  flex-shrink: 0;
+}
+

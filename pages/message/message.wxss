@@ -1,0 +1,14 @@
+/* pages/message/message.wxss */
+.page-message { min-height: 100vh; background: var(--color-bg); padding: 24rpx; }
+.message-list { display: flex; flex-direction: column; gap: 20rpx; }
+.message-card { padding: 28rpx; }
+.message-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx; }
+.message-type-wrap { display: flex; align-items: center; gap: 12rpx; }
+.message-type-dot { width: 16rpx; height: 16rpx; border-radius: 50%; }
+.message-type-dot.type-repair { background: var(--color-primary); }
+.message-type-dot.type-alert { background: var(--color-warning); }
+.message-type-dot.type-system { background: #6b7280; }
+.message-type { font-size: 24rpx; font-weight: 500; color: var(--color-text-secondary); }
+.message-time { font-size: 22rpx; color: var(--color-text-placeholder); }
+.message-title { font-size: 28rpx; font-weight: 600; color: var(--color-text-primary); display: block; margin-bottom: 8rpx; }
+.message-content { font-size: 24rpx; color: var(--color-text-secondary); line-height: 1.5; }

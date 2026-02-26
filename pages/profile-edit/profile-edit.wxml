@@ -1,0 +1,44 @@
+<!--pages/profile-edit/profile-edit.wxml-->
+<view class="page-form">
+  <view class="form-card card">
+    <!-- 头像 -->
+    <view class="form-item avatar-row" bindtap="changeAvatar">
+      <text class="form-label">头像</text>
+      <view class="avatar-edit">
+        <image class="avatar-preview" src="{{form.avatarUrl || '/images/icons/user-gray.png'}}" mode="aspectFill"></image>
+        <image src="/images/icons/chevron-right-gray.png" class="picker-arrow" mode="aspectFit"></image>
+      </view>
+    </view>
+
+    <!-- 昵称 -->
+    <view class="form-item">
+      <text class="form-label">昵称</text>
+      <input class="form-input" placeholder="请输入昵称" value="{{form.nickname}}" bindinput="onInput" data-field="nickname" />
+    </view>
+
+    <!-- 真实姓名 -->
+    <view class="form-item">
+      <text class="form-label">真实姓名</text>
+      <input class="form-input" placeholder="请输入真实姓名" value="{{form.realName}}" bindinput="onInput" data-field="realName" />
+    </view>
+
+    <!-- 手机号 -->
+    <view class="form-item">
+      <text class="form-label">手机号</text>
+      <input class="form-input" type="number" placeholder="请输入手机号" value="{{form.phone}}" bindinput="onInput" data-field="phone" maxlength="11" />
+    </view>
+
+    <!-- 部门 -->
+    <view class="form-item">
+      <text class="form-label">部门</text>
+      <input class="form-input" placeholder="请输入部门" value="{{form.department}}" bindinput="onInput" data-field="department" />
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="submit-wrap">
+    <view class="submit-btn" bindtap="onSave">
+      <text>保存</text>
+    </view>
+  </view>
+</view>

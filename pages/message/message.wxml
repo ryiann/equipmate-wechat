@@ -1,0 +1,21 @@
+<!--pages/message/message.wxml-->
+<view class="page-message">
+  <view class="message-list" wx:if="{{list.length > 0}}">
+    <view class="message-card card" wx:for="{{list}}" wx:key="id" bindtap="onMessageTap" data-item="{{item}}">
+      <view class="message-header">
+        <view class="message-type-wrap">
+          <view class="message-type-dot {{item.typeClass}}"></view>
+          <text class="message-type">{{item.typeLabel}}</text>
+        </view>
+        <text class="message-time">{{item.pushTime}}</text>
+      </view>
+      <text class="message-title">{{item.title}}</text>
+      <text class="message-content line-clamp-2">{{item.contentText}}</text>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <image src="/images/icons/bell-gray.png" style="width:120rpx;height:120rpx;opacity:0.3;margin-bottom:20rpx;" mode="aspectFit"></image>
+    <text>暂无消息</text>
+  </view>
+</view>
